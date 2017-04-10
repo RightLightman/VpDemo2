@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
 //            rollViewPager.setImages(mNewsImages);
             rollViewPager.setOnClickItemListener(new RollViewPager.OnClickItemListener() {
                 @Override
-                public void onClick() {
-//                    Toast.makeText(MainActivity.this,"轮播图的点击事件被回调了",Toast.LENGTH_SHORT).show();
+                public void onClick(int position) {
+                    Toast.makeText(MainActivity.this,"轮播图的点击" + position,Toast.LENGTH_SHORT).show();
                 }
             });
             rollViewPager.start();
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //动态创建小圆点initDots(newItemBean.data.topnews.size());
-        initDots(3);
+//        initDots(4);
         parseJson("");
     }
 
@@ -97,11 +98,11 @@ public class MainActivity extends AppCompatActivity {
 //        mNews.addAll();
 
         //动态创建小圆点newItemBean.data.topnews.size()
-        initDots(3);
+        initDots(4);
         //获取标题与图片数据
         mNewsTitles.clear();
         mNewsImages.clear();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             mNewsTitles.add("标题" + (i + 1));
             mNewsImages.add("http://cn.bing.com/az/hprichbg/rb/Dongdaemun_ZH-CN10736487148_1920x1080.jpg");
         }

@@ -89,7 +89,7 @@ public class RollViewPager extends ViewPager{
                         long upTime = System.currentTimeMillis();
                         if ((upTime - mCurrentTimeMillis) < 100) {//手指按下与手指抬起之间的时间间隔小于500ms则认为是点击事件
 //                            Toast.makeText(getContext(),"点击事件被响应了",Toast.LENGTH_SHORT).show();
-                            mOnClickItemListener.onClick();
+                            mOnClickItemListener.onClick(currentPostion % mImages.size());
                         }
                         break;
                     case MotionEvent.ACTION_CANCEL:
@@ -144,12 +144,12 @@ public class RollViewPager extends ViewPager{
         this.setCurrentItem(currentPostion);
         //修改标题
         tv_title.setText(mTitles.get(currentPostion % mImages.size()));
+        mDots.get(0).setImageResource(R.drawable.dot_normal);
         mDots.get(currentPostion % mImages.size()).setImageResource(R.drawable.dot_focus);
 
         //自动轮播
         mHandler.sendEmptyMessageDelayed(0, 2000);
     }
-
 
     private class RollAdapter extends PagerAdapter {
         @Override
@@ -206,7 +206,7 @@ public class RollViewPager extends ViewPager{
 
     //点击事件的接口
     public interface OnClickItemListener {
-        public void onClick();
+        public void onClick(int position);
     }
 
 }
